@@ -1,0 +1,70 @@
+
+<style>
+    .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+</style>
+<!-- <div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="Loginform">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error *ngIf="Loginform.get('username')?.hasError('required')">Username is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                <mat-error *ngIf="Loginform.get('password')?.hasError('required')">Password is required</mat-error>
+              </mat-form-field>         
+              <button mat-raised-button color="primary" (click)="login()" [disabled]="!Loginform.valid">Login</button>
+            </form>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
+
+  <div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="loginError" class="error-message">
+          {{ loginError }}
+        </div>
+        <form [formGroup]="Loginform">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="Loginform.get('username')?.hasError('required')">Username is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+            <mat-error *ngIf="Loginform.get('password')?.hasError('required')">Password is required</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="login()" [disabled]="!Loginform.valid">Login</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  

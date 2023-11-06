@@ -1,0 +1,65 @@
+  <style>
+    .mainBody  {
+      background-color: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .login-form {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    button{
+      margin-top: 10px;
+    }
+  </style>
+  
+  <div class="mainBody"> 
+     <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+          <div class="login-form">
+            <h2 class="text-center mb-4">Login</h2>
+             <div class="register-form">
+      <form [formGroup]="Loginform" (ngSubmit)="loginUser()">
+        <div class="form-group">
+          <!-- <div class="mb-3"> -->
+            <label>Username</label>
+            <input 
+            type="text" 
+            formControlName="username" 
+            class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+          <!-- </div> -->
+          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+            <div *ngIf="f['username'].errors['required']">User Name is required</div>
+          </div>
+        </div>
+        <!-- <div class="mb-3"> -->
+          <label for="password" class="form-label">Password</label>
+          <input type="password" 
+          class="form-control"
+           formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+        <!-- </div> -->
+        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+          <div *ngIf="f['password'].errors['required']">User password is required</div>
+        </div>
+        <!-- <button type="submit" class="btn btn-primary w-100">Login</button> -->
+        <!-- <button mat-raised-button (click)="loginUser()">Login</button> -->
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form> 
+             </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  
+  
+

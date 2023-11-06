@@ -1,0 +1,79 @@
+<!-- <app-header></app-header> -->
+<div class="d-flex">
+    <!-- Navigation Sidebar -->
+    <!-- <app-side-navigation></app-side-navigation> -->
+    <!-- Page Content -->
+    <div id="content" class="align-middle">
+        <div class="container">
+            <div class="row justify-content-center"> <!-- Center the row horizontally -->
+                <h2 class="mt-4">Update Employee</h2>
+                <mat-card>
+                    <mat-card-content>
+                        <form [formGroup]="Updateform" (ngSubmit)="UpdateDetail()" class="mat-elevation-z8 p-4">
+                            <input type="hidden" formControlName="Id">
+                            <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="first_name" type="text" [ngModel]="stu?.first_name" placeholder="First Name">
+                                <mat-error *ngIf="f['first_name'].hasError('required')">First name is required</mat-error>
+                            </mat-form-field>
+                           </div>
+                            <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="last_name" [ngModel]="stu?.last_name" placeholder="Last Name">
+                                <mat-error *ngIf="f['last_name'].hasError('required')">Last name is required</mat-error>
+                            </mat-form-field>
+                        </div>
+        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="gender" [ngModel]="stu?.gender" placeholder="Gender">
+                                <mat-error *ngIf="f['gender'].hasError('required')">Gender is required</mat-error>
+                            </mat-form-field>
+                        </div>
+        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="address" [ngModel]="stu?.address" placeholder="Address">
+                                <mat-error *ngIf="f['address'].hasError('required')">Address is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="city" [ngModel]="stu?.city" placeholder="City">
+                                <mat-error *ngIf="f['city'].hasError('required')">City is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="state" [ngModel]='stu?.state' placeholder="State">
+                                <mat-error *ngIf="f['state'].hasError('required')">State is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="country" [ngModel]="stu?.country" placeholder="Country">
+                                <mat-error *ngIf="f['country'].hasError('required')">Country is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="email" [ngModel]="stu?.email" placeholder="Email">
+                                <mat-error *ngIf="f['email'].hasError('required')">Email is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <input matInput formControlName="phone_number" [ngModel]="stu?.phone_number" placeholder="Phone Number">
+                                <mat-error *ngIf="f['phone_number'].hasError('required')">Phone name is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                            <button type="submit" class="mat-raised-button mat-primary w-100">Update</button>
+                            <a routerLink="/materialDesign/dashboard" class="mat-button w-100 mt-2">Go to Home</a>
+                        </form>
+
+                    </mat-card-content>
+                </mat-card>
+                <pre>{{ Updateform.value | json }}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
