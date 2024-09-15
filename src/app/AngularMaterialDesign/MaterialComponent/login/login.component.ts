@@ -33,8 +33,8 @@ hardcodedCredentials = {
     if (this.Loginform.valid) {
       const username = this.Loginform.value.username;
       const password = this.Loginform.value.password;
-      if (username === this.hardcodedCredentials.username && password === this.hardcodedCredentials.password) {
-       
+      if (username === this.hardcodedCredentials.username && password === this.hardcodedCredentials.password) 
+      {
        this.loginError='';
       // this.router.navigate(['/lazyOnDemandLoad/dashboard']);
          this.router.navigate(['/materialDesign/dashboard']);

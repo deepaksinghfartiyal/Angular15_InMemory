@@ -6,7 +6,7 @@ import { Student } from 'src/app/Modal/student';
 import { DataSharingService } from 'src/app/Service/data-sharing.service';
 import { StudentService } from 'src/app/Service/student.service';
 import { MessagesService } from '../../Service/messages.service';
-import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-create',
@@ -18,7 +18,7 @@ export class CreateComponent {
   studentArray: Student[] = [];
   Createform!: FormGroup;
   CreateSubmitted = false;
-  @Input() matTableStudentsDataSource!: MatTableDataSource<Student>;
+
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CreateComponent>,
@@ -46,14 +46,17 @@ export class CreateComponent {
     return this.Createform.controls;
   }
 
+  closeDialog(): void {
+    //Close create component and hit will go in dashboard component
+    this.dialogRef.close("I am going to dashboard");
+    //or
+    //this.dialogRef.close();
+  }
   AddDetail() {
-    alert('12399')
-    debugger;
     this.CreateSubmitted = true;
     if (this.Createform.invalid) {
       return;
     }
-    debugger;
     const student4 = new Student();
     student4.Id = this.studentService.getStudents().length + 1;
     student4.first_name = this.Createform.value.first_name;
@@ -67,13 +70,12 @@ export class CreateComponent {
     student4.phone_number = this.Createform.value.phone_number;
     this.studentService.getStudents().push(student4);
     this.dataSharing.getAllStudent = this.studentService.getStudents();
+  
     this.success();
-    debugger;
-    // Update MatTableDataSource
-    this.matTableStudentsDataSource.data = this.studentService.getStudents(); 
-    //this.dialogRef.close(true);
-    //this.router.navigate(['/materialDesign/dashboard']);
+    //Close create component and hit will go in dashboard component
+     this.dialogRef.close({status:true});
   }
+
   reset() {
     this.Createform.reset();
   }

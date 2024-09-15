@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { of, switchMap } from 'rxjs';
 import { Student } from 'src/app/Modal/student';
 import { StudentService } from 'src/app/Service/student.service';
 import { MessagesService } from '../../Service/messages.service';
@@ -16,15 +15,13 @@ import { CreateComponent } from '../create/create.component';
   changeDetection: ChangeDetectionStrategy.OnPush // Set the change detection strategy here
 })
 export class DashboardComponent {
+
   stu:Student|undefined;
   studentsData: Student[] = [];
   displayedColumns: string[] = ['first_name', 'last_name', 'gender', 'address', 'city', 'state', 'country', 'email', 'phone_number','actions'];
-  private idColumn = 'Id';
   paginator:number=3;
-  private addRecordComponent =CreateComponent;
-  //httpService: any;
-  //public matTableStudentsDataSource = new MatTableDataSource();
-  matTableStudentsDataSource = new MatTableDataSource<any>();
+  
+   matTableStudentsDataSource = new MatTableDataSource<Student>();
 
   constructor(private studentService: StudentService, 
     public dialogRef: MatDialogRef<CreateComponent>,
@@ -45,7 +42,6 @@ export class DashboardComponent {
     const dsData = this.studentService.getStudents();
     const name1 = 'first_name';
     const name2 = 'last_name';
-    //const record = dsData.find((obj) => obj[this.idColumn] === recordId);
     const record = this.studentService.findStudentById(recordId);
     let name="Are you sure want to delete the record?";
     const url = recordId;
@@ -79,13 +75,20 @@ export class DashboardComponent {
     //   data: {recordId: recordId, idColumn: this.idColumn, paginator: this.paginator, dataSource: this.dataSource}
     // });
   }
-
   public addRecord()
   {
-    //this.dialog.open(this.addRecordComponent);
-    this.dialog.open(CreateComponent, {data: { matTableStudentsDataSource: this.matTableStudentsDataSource }});
-  }
+    //Open CreateComponent
+    const dialogRef = this.dialog.open(CreateComponent);
 
+    //Close CreateComponent
+    dialogRef.afterClosed().subscribe(result => {
+      debugger;
+      console.log('The dialog was closed:-'+result);
+      if(result?.status==true)
+        this.matTableStudentsDataSource.data = this.studentService.getStudents();
+    });
+  }
+  
   private success() {
     this.messagesService.openDialog(
       'Success',
